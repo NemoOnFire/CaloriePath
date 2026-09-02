@@ -52,13 +52,37 @@ footer{text-align:center;padding:35px 20px;color:#64748b;font-size:14px}
 <button onclick="calculate()">Calculate my calories</button>
 </section>
 
-<section class="card results" id="results">
-<h2>Your estimated daily needs</h2>
-<div class="result-grid">
-<div class="result"><small>BMR</small><strong id="bmr">—</strong><small>cal/day</small></div>
-<div class="result"><small>TDEE</small><strong id="tdee">—</strong><small>cal/day</small></div>
-<div class="result"><small>Goal calories</small><strong id="goalcal">—</strong><small>cal/day</small></div>
-<div class="result"><small>Protein target</small><strong id="protein">—</strong><small>g/day</small></div>
+<div class="results" id="results">
+  <h2>Your CaloriePath Results</h2>
+
+  <div style="background:#eef7ff;padding:18px;border-radius:14px;margin-bottom:14px;text-align:center;">
+    <small style="display:block;font-size:14px;color:#555;">YOUR DAILY TARGET</small>
+    <strong id="goalcal" style="display:block;font-size:36px;color:#1464a0;margin:5px 0;">—</strong>
+    <small>calories per day</small>
+  </div>
+
+  <div>
+    <small>🔥 Maintenance (TDEE)</small>
+    <strong id="tdee">—</strong>
+    <small>cal/day</small>
+  </div>
+
+  <div>
+    <small>⚡ BMR</small>
+    <strong id="bmr">—</strong>
+    <small>cal/day</small>
+  </div>
+
+  <div>
+    <small>🥩 Protein target</small>
+    <strong id="protein">—</strong>
+    <small>g/day</small>
+  </div>
+
+  <p style="font-size:13px;color:#666;margin-top:15px;">
+    Your target is based on your estimated maintenance calories and the goal you selected.
+  </p>
+</div>
 </div>
 <p class="notice">These are estimates, not medical advice. Actual calorie needs vary between people. Avoid using an aggressive calorie deficit without appropriate professional guidance.</p>
 </section>
