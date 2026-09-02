@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TDEE Calculator — Daily Calorie & Macro Calculator</title>
+<meta name="description" content="Calculate your estimated BMR, TDEE, calorie deficit, and daily protein target with our free TDEE calculator.">
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f5f7fb;color:#172033}
+header{background:#111827;color:white;padding:28px 20px}nav{max-width:1050px;margin:auto;display:flex;justify-content:space-between;align-items:center}.brand{font-weight:800;font-size:22px}.navlink{color:#cbd5e1;text-decoration:none}
+main{max-width:1050px;margin:40px auto;padding:0 20px}.hero{text-align:center;margin-bottom:30px}.hero h1{font-size:42px;margin:0 0 10px}.hero p{font-size:18px;color:#64748b}
+.card{background:white;border-radius:18px;padding:28px;box-shadow:0 8px 30px rgba(15,23,42,.07);margin-bottom:24px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.field label{display:block;font-weight:700;margin-bottom:7px}.field input,.field select{width:100%;padding:13px;border:1px solid #cbd5e1;border-radius:10px;font-size:16px;background:white}
+button{width:100%;border:0;border-radius:11px;padding:15px;font-size:17px;font-weight:800;background:#2563eb;color:white;cursor:pointer;margin-top:20px}button:hover{background:#1d4ed8}
+.results{display:none}.results h2{text-align:center}.result-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.result{padding:18px;background:#f1f5f9;border-radius:13px;text-align:center}.result strong{display:block;font-size:24px;margin-top:6px}.result small{color:#64748b}
+.notice{font-size:13px;color:#64748b;line-height:1.5}.article{line-height:1.7}.article h2{margin-top:28px}
+footer{text-align:center;padding:35px 20px;color:#64748b;font-size:14px}
+@media(max-width:700px){.grid,.result-grid{grid-template-columns:1fr}.hero h1{font-size:32px}}
+</style>
+</head>
+<body>
+<header><nav><div class="brand">CaloriePath</div><a class="navlink" href="#about">How it works</a></nav></header>
+<main>
+<section class="hero">
+<h1>Free TDEE Calculator</h1>
+<p>Estimate your BMR, daily calorie needs, weight-loss calories, and protein target.</p>
+</section>
+
+<section class="card">
+<div class="grid">
+<div class="field"><label for="sex">Sex</label><select id="sex"><option value="male">Male</option><option value="female">Female</option></select></div>
+<div class="field"><label for="age">Age</label><input id="age" type="number" min="15" max="100" placeholder="e.g. 21"></div>
+<div class="field"><label for="height">Height (inches)</label><input id="height" type="number" min="48" max="96" placeholder="e.g. 64"></div>
+<div class="field"><label for="weight">Weight (lb)</label><input id="weight" type="number" min="70" max="700" placeholder="e.g. 170"></div>
+<div class="field"><label for="activity">Activity level</label>
+<select id="activity">
+<option value="1.2">Sedentary — little exercise</option>
+<option value="1.375">Lightly active — 1–3 days/week</option>
+<option value="1.55">Moderately active — 3–5 days/week</option>
+<option value="1.725">Very active — 6–7 days/week</option>
+<option value="1.9">Extra active — very hard training/physical job</option>
+</select></div>
+<div class="field"><label for="goal">Goal</label>
+<select id="goal">
+<option value="maintain">Maintain weight</option>
+<option value="loss05">Lose ~0.5 lb/week</option>
+<option value="loss1">Lose ~1 lb/week</option>
+<option value="loss15">Lose ~1.5 lb/week</option>
+<option value="gain">Gain ~0.5 lb/week</option>
+</select></div>
+</div>
+<button onclick="calculate()">Calculate my calories</button>
+</section>
+
+<section class="card results" id="results">
+<h2>Your estimated daily needs</h2>
+<div class="result-grid">
+<div class="result"><small>BMR</small><strong id="bmr">—</strong><small>cal/day</small></div>
+<div class="result"><small>TDEE</small><strong id="tdee">—</strong><small>cal/day</small></div>
+<div class="result"><small>Goal calories</small><strong id="goalcal">—</strong><small>cal/day</small></div>
+<div class="result"><small>Protein target</small><strong id="protein">—</strong><small>g/day</small></div>
+</div>
+<p class="notice">These are estimates, not medical advice. Actual calorie needs vary between people. Avoid using an aggressive calorie deficit without appropriate professional guidance.</p>
+</section>
+
+<section class="card article" id="about">
+<h2>What is TDEE?</h2>
+<p>TDEE stands for Total Daily Energy Expenditure. It is an estimate of how many calories you burn in a typical day, including your resting energy needs and physical activity.</p>
+<h2>How is TDEE calculated?</h2>
+<p>This calculator estimates BMR using the Mifflin–St Jeor equation and then multiplies BMR by an activity factor to estimate TDEE.</p>
+<h2>How many calories should I eat to lose weight?</h2>
+<p>A common starting point is a moderate calorie deficit from estimated maintenance calories. Your actual progress over several weeks is more useful than treating any calculator estimate as an exact number.</p>
+<h2>Why add a protein target?</h2>
+<p>Protein can help support muscle maintenance and satiety during a calorie deficit. This calculator provides a simple estimate that can be adjusted based on your goals and circumstances.</p>
+</section>
+</main>
+<footer>CaloriePath • Free calorie and fitness calculators</footer>
+
+<script>
+function calculate(){
+  const sex=document.getElementById('sex').value;
+  const age=Number(document.getElementById('age').value);
+  const h=Number(document.getElementById('height').value);
+  const w=Number(document.getElementById('weight').value);
+  const activity=Number(document.getElementById('activity').value);
+  const goal=document.getElementById('goal').value;
+  if(!age||!h||!w){alert("Please enter your age, height, and weight.");return;}
+  const kg=w*0.45359237, cm=h*2.54;
+  let bmr=10*kg+6.25*cm-5*age+(sex==='male'?5:-161);
+  let tdee=bmr*activity;
+  let delta={maintain:0,loss05:-250,loss1:-500,loss15:-750,gain:250}[goal];
+  let calories=Math.round(tdee+delta);
+  let protein=Math.round(w*0.8);
+  document.getElementById('bmr').textContent=Math.round(bmr).toLocaleString();
+  document.getElementById('tdee').textContent=Math.round(tdee).toLocaleString();
+  document.getElementById('goalcal').textContent=calories.toLocaleString();
+  document.getElementById('protein').textContent=protein;
+  document.getElementById('results').style.display='block';
+  document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
+}
+</script>
+</body>
+</html>
