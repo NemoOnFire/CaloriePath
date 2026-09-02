@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free TDEE Calculator – Daily Calorie & Protein Needs | CaloriePath</title>
+<meta name="description" content="Use CaloriePath's free TDEE calculator to estimate your BMR, daily calorie needs, weight-loss calories, and protein target.">
+<link rel="canonical" href="https://nemoonfire.github.io/CaloriePath/">
+<meta property="og:title" content="Free TDEE Calculator | CaloriePath">
+<meta property="og:description" content="Calculate your daily calorie needs, TDEE, BMR, weight-loss calories, and protein target for free.">
+<meta property="og:type" content="website">
+<meta name="robots" content="index, follow">
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f5f7fb;color:#172033}
+header{background:#111827;color:white;padding:18px 20px}nav{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:20px}.brand{font-weight:900;font-size:23px}.navlinks{display:flex;gap:16px;flex-wrap:wrap}.navlink{color:#cbd5e1;text-decoration:none;font-size:14px;font-weight:700}
+main{max-width:1100px;margin:auto;padding:42px 20px}.hero{text-align:center;margin-bottom:28px}.hero h1{font-size:44px;line-height:1.1;margin:0 0 12px}.hero p{font-size:18px;color:#64748b;max-width:700px;margin:auto}
+.tool-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin:28px 0}.tool-link{background:white;border-radius:18px;padding:22px;text-decoration:none;color:#172033;box-shadow:0 8px 30px rgba(15,23,42,.07);border:1px solid #e5e7eb}.tool-link strong{display:block;font-size:19px;margin-bottom:6px}.tool-link span{color:#64748b;font-size:14px}
+.card{background:white;border-radius:18px;padding:28px;box-shadow:0 8px 30px rgba(15,23,42,.07);margin-bottom:24px}.card h2{margin-top:0}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.field label{display:block;font-weight:700;margin-bottom:7px}.field input,.field select{width:100%;padding:13px;border:1px solid #cbd5e1;border-radius:10px;font-size:16px;background:white}
+button{width:100%;border:0;border-radius:11px;padding:15px;font-size:17px;font-weight:800;background:#2563eb;color:white;cursor:pointer;margin-top:20px}.results{display:none;margin-top:22px;padding:22px;background:#f8fafc;border-radius:16px}.results h3{text-align:center;margin-top:0}.big-result{background:#eef7ff;padding:24px;border-radius:18px;text-align:center;margin:20px 0}.big-result small{display:block}.big-result .number{display:block;font-size:46px;font-weight:900;margin:8px 0;color:#1769aa}.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.result{padding:18px;background:white;border-radius:13px;text-align:center}.result strong{display:block;font-size:24px;margin-top:6px}.result small{color:#64748b}.notice{font-size:13px;color:#64748b;line-height:1.5}.article{line-height:1.7}.faq h3{font-size:19px;margin-bottom:6px}footer{text-align:center;padding:35px 20px;color:#64748b;font-size:14px}
+@media(max-width:760px){.hero h1{font-size:34px}.grid,.tool-grid,.result-grid{grid-template-columns:1fr}nav{align-items:flex-start;flex-direction:column}.navlinks{justify-content:flex-start}main{padding:30px 15px}.card{padding:20px}}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"CaloriePath","url":"https://nemoonfire.github.io/CaloriePath/","description":"Free calorie and fitness calculators including TDEE, calorie deficit, BMI, macro, and ideal weight calculators.","applicationCategory":"HealthApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+</head>
+<body>
+<header><nav><div class="brand">CaloriePath</div><div class="navlinks">
+<a class="navlink" href="#tdee">TDEE</a><a class="navlink" href="#deficit">Calorie Deficit</a><a class="navlink" href="#bmi">BMI</a><a class="navlink" href="#macros">Macros</a><a class="navlink" href="#ideal-weight">Ideal Weight</a>
+</div></nav></header>
+<main>
+<section class="hero"><h1>Free Calorie & Fitness Calculators</h1><p>Estimate your daily calorie needs, weight-loss target, BMI, macros, and ideal weight with CaloriePath.</p></section>
+
+<div class="tool-grid">
+<a class="tool-link" href="#tdee"><strong>🔥 TDEE Calculator</strong><span>Estimate BMR, maintenance calories, goal calories, and protein.</span></a>
+<a class="tool-link" href="#deficit"><strong>📉 Calorie Deficit Calculator</strong><span>Find an estimated daily calorie target for your weight-loss goal.</span></a>
+<a class="tool-link" href="#bmi"><strong>⚖️ BMI Calculator</strong><span>Calculate BMI from your height and weight.</span></a>
+<a class="tool-link" href="#macros"><strong>🥩 Macro Calculator</strong><span>Estimate daily protein, fat, and carbohydrate targets.</span></a>
+<a class="tool-link" href="#ideal-weight"><strong>🎯 Ideal Weight Calculator</strong><span>Estimate a reference weight from your height.</span></a>
+</div>
+
+<section class="card" id="tdee"><h2>🔥 TDEE Calculator</h2><p class="notice">Estimate your basal metabolic rate, maintenance calories, and a goal calorie target.</p>
+<div class="grid">
+<div class="field"><label for="sex">Sex</label><select id="sex"><option value="male">Male</option><option value="female">Female</option></select></div>
+<div class="field"><label for="age">Age</label><input id="age" type="number" min="15" max="100" placeholder="e.g. 21"></div>
+<div class="field"><label for="height">Height (inches)</label><input id="height" type="number" min="48" max="96" placeholder="e.g. 64"></div>
+<div class="field"><label for="weight">Weight (lb)</label><input id="weight" type="number" min="70" max="700" placeholder="e.g. 170"></div>
+<div class="field"><label for="activity">Activity level</label><select id="activity">
+<option value="1.2">Sedentary — little exercise</option><option value="1.375">Lightly active — 1–3 days/week</option><option value="1.55">Moderately active — 3–5 days/week</option><option value="1.725">Very active — 6–7 days/week</option><option value="1.9">Extra active — very hard training/physical job</option>
+</select></div>
+<div class="field"><label for="goal">Goal</label><select id="goal"><option value="maintain">Maintain weight</option><option value="loss05">Lose ~0.5 lb/week</option><option value="loss1">Lose ~1 lb/week</option><option value="loss15">Lose ~1.5 lb/week</option><option value="gain">Gain ~0.5 lb/week</option></select></div>
+</div><button onclick="calculateTDEE()">Calculate my calories</button>
+<div class="results" id="tdee-results"><h3>Your CaloriePath Results</h3><div class="big-result"><small>Your Daily Target</small><span class="number" id="goalcal">—</span><small>calories per day</small></div>
+<div class="result-grid"><div class="result"><small>🔥 Maintenance (TDEE)</small><strong id="tdee-value">—</strong><small>cal/day</small></div><div class="result"><small>⚡ BMR</small><strong id="bmr">—</strong><small>cal/day</small></div><div class="result"><small>🥩 Protein target</small><strong id="protein">—</strong><small>g/day</small></div></div>
+<p class="notice">Your target is based on your estimated maintenance calories and the goal you selected.</p></div></section>
+
+<section class="card" id="deficit"><h2>📉 Calorie Deficit Calculator</h2><p class="notice">Estimate a daily calorie target from your maintenance calories and desired rate of weight loss.</p>
+<div class="grid"><div class="field"><label for="deficit-tdee">Maintenance calories</label><input id="deficit-tdee" type="number" min="500" max="10000" placeholder="e.g. 2300"></div>
+<div class="field"><label for="deficit-goal">Desired loss</label><select id="deficit-goal"><option value="250">~0.5 lb/week</option><option value="500">~1 lb/week</option><option value="750">~1.5 lb/week</option></select></div></div>
+<button onclick="calculateDeficit()">Calculate deficit</button>
+<div class="results" id="deficit-results"><h3>Estimated Daily Target</h3><div class="big-result"><span class="number" id="deficit-calories">—</span><small>calories per day</small></div><p class="notice" id="deficit-text"></p></div></section>
+
+<section class="card" id="bmi"><h2>⚖️ BMI Calculator</h2><p class="notice">Calculate BMI using your height and weight.</p>
+<div class="grid"><div class="field"><label for="bmi-height">Height (inches)</label><input id="bmi-height" type="number" min="48" max="96" placeholder="e.g. 64"></div><div class="field"><label for="bmi-weight">Weight (lb)</label><input id="bmi-weight" type="number" min="50" max="700" placeholder="e.g. 170"></div></div>
+<button onclick="calculateBMI()">Calculate BMI</button><div class="results" id="bmi-results"><h3>Your BMI</h3><div class="big-result"><span class="number" id="bmi-value">—</span><small id="bmi-category">—</small></div><p class="notice">BMI is a screening measure and does not directly measure body fat or overall health.</p></div></section>
+
+<section class="card" id="macros"><h2>🥩 Macro Calculator</h2><p class="notice">Estimate daily protein, fat, and carbohydrate targets from your calorie target.</p>
+<div class="grid"><div class="field"><label for="macro-calories">Daily calories</label><input id="macro-calories" type="number" min="500" max="10000" placeholder="e.g. 1800"></div><div class="field"><label for="macro-weight">Weight (lb)</label><input id="macro-weight" type="number" min="70" max="700" placeholder="e.g. 170"></div></div>
+<button onclick="calculateMacros()">Calculate macros</button><div class="results" id="macro-results"><h3>Your Estimated Daily Macros</h3><div class="result-grid"><div class="result"><small>🥩 Protein</small><strong id="macro-protein">—</strong><small>g/day</small></div><div class="result"><small>🥑 Fat</small><strong id="macro-fat">—</strong><small>g/day</small></div><div class="result"><small>🍚 Carbs</small><strong id="macro-carbs">—</strong><small>g/day</small></div></div><p class="notice">This estimate uses 0.8 g protein per lb of body weight and about 25% of calories from fat, with remaining calories assigned to carbohydrates.</p></div></section>
+
+<section class="card" id="ideal-weight"><h2>🎯 Ideal Weight Calculator</h2><p class="notice">Estimate a reference weight using the Devine formula. This is a reference estimate, not a personalized health target.</p>
+<div class="grid"><div class="field"><label for="ideal-sex">Sex</label><select id="ideal-sex"><option value="male">Male</option><option value="female">Female</option></select></div><div class="field"><label for="ideal-height">Height (inches)</label><input id="ideal-height" type="number" min="48" max="96" placeholder="e.g. 64"></div></div>
+<button onclick="calculateIdealWeight()">Calculate ideal weight</button><div class="results" id="ideal-results"><h3>Reference Weight</h3><div class="big-result"><span class="number" id="ideal-value">—</span><small>lb</small></div><p class="notice">The Devine formula is one reference method and does not account for body composition or individual circumstances.</p></div></section>
+
+<section class="card article" id="about">
+<h2>What is TDEE?</h2><p>TDEE stands for Total Daily Energy Expenditure. It is an estimate of how many calories you burn in a typical day, including your resting energy needs and physical activity.</p>
+<h2>How is TDEE calculated?</h2><p>This calculator estimates BMR using the Mifflin–St Jeor equation and then multiplies BMR by an activity factor to estimate TDEE.</p>
+<h2>How many calories should I eat to lose weight?</h2><p>A common starting point is a moderate calorie deficit from estimated maintenance calories. Your actual progress over several weeks is more useful than treating any calculator estimate as an exact number.</p>
+<h2>Why add a protein target?</h2><p>Protein can help support muscle maintenance and satiety during a calorie deficit. This calculator provides a simple estimate that can be adjusted based on your goals and circumstances.</p>
+<h2>Frequently Asked Questions</h2><div class="faq">
+<h3>What is a good calorie deficit for weight loss?</h3><p>A moderate calorie deficit is a common starting point for weight loss. Your ideal calorie intake depends on your maintenance calories, activity level, and individual goals.</p>
+<h3>What is the difference between BMR and TDEE?</h3><p>BMR is the estimated number of calories your body needs at rest. TDEE includes your BMR plus the calories you burn through daily activity and exercise.</p>
+<h3>How accurate is a TDEE calculator?</h3><p>A TDEE calculator provides an estimate rather than an exact number. Tracking your weight and calorie intake over several weeks can help you better understand your actual maintenance needs.</p>
+<h3>How much protein should I eat while losing weight?</h3><p>A higher-protein diet can help support muscle maintenance and may help you feel fuller while eating fewer calories. Your ideal protein intake depends on your body size, activity level, and goals.</p>
+</div></section>
+</main>
+<footer>CaloriePath • Free calorie and fitness calculators</footer>
+
+<script>
+function n(id){return Number(document.getElementById(id).value)}
+function calculateTDEE(){
+ const sex=document.getElementById('sex').value,age=n('age'),h=n('height'),w=n('weight'),activity=n('activity'),goal=document.getElementById('goal').value;
+ if(!age||!h||!w){alert("Please enter your age, height, and weight.");return}
+ const kg=w*.45359237,cm=h*2.54,bmr=10*kg+6.25*cm-5*age+(sex==='male'?5:-161),tdee=bmr*activity;
+ const delta={maintain:0,loss05:-250,loss1:-500,loss15:-750,gain:250}[goal],calories=Math.round(tdee+delta),protein=Math.round(w*.8);
+ document.getElementById('bmr').textContent=Math.round(bmr).toLocaleString();document.getElementById('tdee-value').textContent=Math.round(tdee).toLocaleString();document.getElementById('goalcal').textContent=calories.toLocaleString();document.getElementById('protein').textContent=protein;document.getElementById('tdee-results').style.display='block'
+}
+function calculateDeficit(){
+ const maintenance=n('deficit-tdee'),deficit=n('deficit-goal');if(!maintenance){alert("Please enter your maintenance calories.");return}
+ const target=Math.max(0,Math.round(maintenance-deficit));document.getElementById('deficit-calories').textContent=target.toLocaleString();document.getElementById('deficit-text').textContent="Estimated deficit: "+deficit.toLocaleString()+" calories per day.";document.getElementById('deficit-results').style.display='block'
+}
+function calculateBMI(){
+ const h=n('bmi-height'),w=n('bmi-weight');if(!h||!w){alert("Please enter your height and weight.");return}
+ const bmi=w/(h*h)*703;let c=bmi<18.5?"Underweight range":bmi<25?"Healthy-weight range":bmi<30?"Overweight range":"Obesity range";
+ document.getElementById('bmi-value').textContent=bmi.toFixed(1);document.getElementById('bmi-category').textContent=c;document.getElementById('bmi-results').style.display='block'
+}
+function calculateMacros(){
+ const calories=n('macro-calories'),weight=n('macro-weight');if(!calories||!weight){alert("Please enter your daily calories and weight.");return}
+ const protein=Math.round(weight*.8),fat=Math.round(calories*.25/9),carbs=Math.round(Math.max(0,calories-protein*4-fat*9)/4);
+ document.getElementById('macro-protein').textContent=protein;document.getElementById('macro-fat').textContent=fat;document.getElementById('macro-carbs').textContent=carbs;document.getElementById('macro-results').style.display='block'
+}
+function calculateIdealWeight(){
+ const sex=document.getElementById('ideal-sex').value,h=n('ideal-height');if(!h){alert("Please enter your height.");return}
+ const base=sex==='male'?50:45.5,pounds=base+2.3*Math.max(0,h-60);document.getElementById('ideal-value').textContent=pounds.toFixed(1);document.getElementById('ideal-results').style.display='block'
+}
+</script>
+</body>
+</html>
