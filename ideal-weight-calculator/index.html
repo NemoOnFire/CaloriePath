@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Free Ideal Weight Calculator | CaloriePath</title>
+
+<meta name="description" content="Use CaloriePath's free ideal weight calculator to estimate a reference weight based on your height using the Devine formula.">
+
+<link rel="canonical" href="https://nemoonfire.github.io/CaloriePath/ideal-weight-calculator/">
+<meta name="robots" content="index, follow">
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#172033}
+header{background:#111827;color:white;padding:20px}
+nav{max-width:800px;margin:auto;display:flex;justify-content:space-between;align-items:center}
+.brand{font-size:24px;font-weight:bold}
+.back{color:white;text-decoration:none}
+main{max-width:800px;margin:auto;padding:40px 18px}
+.card{background:white;border-radius:20px;padding:30px;box-shadow:0 8px 30px rgba(15,23,42,.08);margin-bottom:24px}
+h1{text-align:center;margin-top:0}
+.subtitle{text-align:center;color:#64748b;line-height:1.6}
+label{display:block;font-weight:bold;margin-top:20px;margin-bottom:7px}
+input,select{width:100%;padding:14px;border:1px solid #d1d5db;border-radius:10px;font-size:16px}
+button{width:100%;margin-top:25px;padding:15px;border:0;border-radius:10px;background:#2563eb;color:white;font-size:17px;font-weight:bold}
+.results{display:none;margin-top:28px}
+.big{background:#eef7ff;border-radius:16px;text-align:center;padding:24px}
+.big small{display:block;color:#64748b}
+.big strong{display:block;font-size:42px;color:#1769aa;margin:8px}
+.info{line-height:1.7;color:#475569}
+</style>
+</head>
+
+<body>
+
+<header>
+<nav>
+<div class="brand">CaloriePath</div>
+<a class="back" href="../">← Home</a>
+</nav>
+</header>
+
+<main>
+
+<div class="card">
+
+<h1>🎯 Ideal Weight Calculator</h1>
+
+<p class="subtitle">
+Estimate a reference weight based on your height using the Devine formula.
+</p>
+
+<label for="sex">Sex</label>
+<select id="sex">
+<option value="male">Male</option>
+<option value="female">Female</option>
+</select>
+
+<label for="height">Height (inches)</label>
+<input id="height" type="number" placeholder="e.g. 64">
+
+<button onclick="calculateIdealWeight()">Calculate Reference Weight</button>
+
+<div class="results" id="results">
+
+<div class="big">
+<small>REFERENCE WEIGHT</small>
+<strong id="pounds">—</strong>
+<small id="kilograms">—</small>
+</div>
+
+</div>
+
+</div>
+
+<div class="card info">
+
+<h2>What is an ideal weight?</h2>
+
+<p>
+An ideal or reference weight calculator provides an estimated weight range or reference point based on height. It should not be treated as a required or medically ideal weight for every person.
+</p>
+
+<h2>About the Devine formula</h2>
+
+<p>
+The Devine formula estimates reference body weight using height and sex. For adults above 5 feet, additional weight is added for each inch above 60 inches.
+</p>
+
+<h2>Why is this only a reference?</h2>
+
+<p>
+Healthy body weight can vary considerably based on muscle mass, body composition, age, and other individual factors. Use this result as a general reference rather than an exact target.
+</p>
+
+</div>
+
+</main>
+
+<script>
+
+function calculateIdealWeight(){
+
+const sex=document.getElementById("sex").value;
+const height=parseFloat(document.getElementById("height").value);
+
+if(!height || height<=0){
+alert("Please enter your height.");
+return;
+}
+
+const baseKg=sex==="male"?50:45.5;
+const kg=baseKg+2.3*Math.max(0,height-60);
+const pounds=kg*2.2046226218;
+
+document.getElementById("pounds").textContent=pounds.toFixed(1)+" lb";
+document.getElementById("kilograms").textContent=kg.toFixed(1)+" kg";
+
+document.getElementById("results").style.display="block";
+
+}
+
+</script>
+
+</body>
+</html>
