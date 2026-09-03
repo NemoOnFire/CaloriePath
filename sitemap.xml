@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
 <url>
 <loc>https://nemoonfire.github.io/CaloriePath/</loc>
 </url>
+
+<url>
+<loc>https://nemoonfire.github.io/CaloriePath/tdee-calculator/</loc>
+</url>
+
+<url>
+<loc>https://nemoonfire.github.io/CaloriePath/calorie-deficit-calculator/</loc>
+</url>
+
+<url>
+<loc>https://nemoonfire.github.io/CaloriePath/bmi-calculator/</loc>
+</url>
+
+<url>
+<loc>https://nemoonfire.github.io/CaloriePath/macro-calculator/</loc>
+</url>
+
+<url>
+<loc>https://nemoonfire.github.io/CaloriePath/ideal-weight-calculator/</loc>
+</url>
+
 </urlset>
