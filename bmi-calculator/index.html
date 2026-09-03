@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Free BMI Calculator | CaloriePath</title>
+
+<meta name="description" content="Use CaloriePath's free BMI calculator to calculate your body mass index from your height and weight and see the standard BMI category.">
+
+<link rel="canonical" href="https://nemoonfire.github.io/CaloriePath/bmi-calculator/">
+<meta name="robots" content="index, follow">
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#172033}
+header{background:#111827;color:white;padding:20px}
+nav{max-width:800px;margin:auto;display:flex;justify-content:space-between;align-items:center}
+.brand{font-size:24px;font-weight:bold}
+.back{color:white;text-decoration:none}
+main{max-width:800px;margin:auto;padding:40px 18px}
+.card{background:white;border-radius:20px;padding:30px;box-shadow:0 8px 30px rgba(15,23,42,.08);margin-bottom:24px}
+h1{text-align:center;margin-top:0}
+.subtitle{text-align:center;color:#64748b;line-height:1.6}
+label{display:block;font-weight:bold;margin-top:20px;margin-bottom:7px}
+input{width:100%;padding:14px;border:1px solid #d1d5db;border-radius:10px;font-size:16px}
+button{width:100%;margin-top:25px;padding:15px;border:0;border-radius:10px;background:#2563eb;color:white;font-size:17px;font-weight:bold}
+.results{display:none;margin-top:28px}
+.big{background:#eef7ff;border-radius:16px;text-align:center;padding:24px}
+.big small{display:block;color:#64748b}
+.big strong{display:block;font-size:46px;color:#1769aa;margin:8px}
+.category{font-size:22px;font-weight:bold;margin-top:12px}
+.info{line-height:1.7;color:#475569}
+table{width:100%;border-collapse:collapse;margin-top:15px}
+td{padding:10px;border-bottom:1px solid #e5e7eb}
+@media(max-width:600px){.card{padding:22px}}
+</style>
+</head>
+
+<body>
+
+<header>
+<nav>
+<div class="brand">CaloriePath</div>
+<a class="back" href="../">← Home</a>
+</nav>
+</header>
+
+<main>
+
+<div class="card">
+
+<h1>⚖️ BMI Calculator</h1>
+
+<p class="subtitle">
+Calculate your Body Mass Index using your height and weight.
+</p>
+
+<label for="height">Height (inches)</label>
+<input id="height" type="number" placeholder="e.g. 64">
+
+<label for="weight">Weight (lb)</label>
+<input id="weight" type="number" placeholder="e.g. 166">
+
+<button onclick="calculateBMI()">Calculate My BMI</button>
+
+<div class="results" id="results">
+
+<div class="big">
+<small>YOUR BMI</small>
+<strong id="bmi">—</strong>
+<div class="category" id="category">—</div>
+</div>
+
+</div>
+
+</div>
+
+<div class="card info">
+
+<h2>What is BMI?</h2>
+
+<p>
+BMI, or Body Mass Index, is a screening measurement that compares your weight with your height. It is commonly used to classify weight ranges in adults.
+</p>
+
+<h2>BMI Categories</h2>
+
+<table>
+<tr><td>Underweight</td><td>Below 18.5</td></tr>
+<tr><td>Healthy weight</td><td>18.5–24.9</td></tr>
+<tr><td>Overweight</td><td>25.0–29.9</td></tr>
+<tr><td>Obesity</td><td>30.0 or higher</td></tr>
+</table>
+
+<p>
+BMI is a screening tool and does not directly measure body fat or distinguish between muscle and fat.
+</p>
+
+</div>
+
+</main>
+
+<script>
+
+function calculateBMI(){
+
+const height=parseFloat(document.getElementById("height").value);
+const weight=parseFloat(document.getElementById("weight").value);
+
+if(!height || !weight || height<=0 || weight<=0){
+alert("Please enter your height and weight.");
+return;
+}
+
+const bmi=(weight/(height*height))*703;
+
+let category;
+
+if(bmi<18.5){
+category="Underweight";
+}else if(bmi<25){
+category="Healthy weight";
+}else if(bmi<30){
+category="Overweight";
+}else{
+category="Obesity";
+}
+
+document.getElementById("bmi").textContent=bmi.toFixed(1);
+document.getElementById("category").textContent=category;
+document.getElementById("results").style.display="block";
+
+}
+
+</script>
+
+</body>
+</html>
