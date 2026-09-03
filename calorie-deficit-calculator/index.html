@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Free Calorie Deficit Calculator | CaloriePath</title>
+
+<meta name="description" content="Use CaloriePath's free calorie deficit calculator to estimate your daily calorie target for weight loss based on your maintenance calories and weekly goal.">
+
+<link rel="canonical" href="https://nemoonfire.github.io/CaloriePath/calorie-deficit-calculator/">
+<meta name="robots" content="index, follow">
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#172033}
+header{background:#111827;color:white;padding:20px}
+nav{max-width:800px;margin:auto;display:flex;justify-content:space-between;align-items:center}
+.brand{font-size:24px;font-weight:bold}
+.back{color:white;text-decoration:none}
+main{max-width:800px;margin:auto;padding:40px 18px}
+.card{background:white;border-radius:20px;padding:30px;box-shadow:0 8px 30px rgba(15,23,42,.08);margin-bottom:24px}
+h1{text-align:center;margin-top:0}
+.subtitle{text-align:center;color:#64748b;line-height:1.6}
+label{display:block;font-weight:bold;margin-top:20px;margin-bottom:7px}
+input,select{width:100%;padding:14px;border:1px solid #d1d5db;border-radius:10px;font-size:16px}
+button{width:100%;margin-top:25px;padding:15px;border:0;border-radius:10px;background:#2563eb;color:white;font-size:17px;font-weight:bold}
+.results{display:none;margin-top:28px}
+.big{background:#eef7ff;border-radius:16px;text-align:center;padding:24px}
+.big small{display:block;color:#64748b}
+.big strong{display:block;font-size:44px;color:#1769aa;margin:8px}
+.info{line-height:1.7;color:#475569}
+</style>
+</head>
+
+<body>
+
+<header>
+<nav>
+<div class="brand">CaloriePath</div>
+<a class="back" href="../">← Home</a>
+</nav>
+</header>
+
+<main>
+
+<div class="card">
+
+<h1>📉 Calorie Deficit Calculator</h1>
+
+<p class="subtitle">
+Estimate a daily calorie target based on your maintenance calories and weight-loss goal.
+</p>
+
+<label for="maintenance">Maintenance Calories</label>
+<input id="maintenance" type="number" placeholder="e.g. 2300">
+
+<label for="goal">Weight Loss Goal</label>
+<select id="goal">
+<option value="250">Lose about 0.5 lb/week</option>
+<option value="500">Lose about 1 lb/week</option>
+<option value="750">Lose about 1.5 lb/week</option>
+<option value="1000">Lose about 2 lb/week</option>
+</select>
+
+<button onclick="calculateDeficit()">Calculate My Calorie Target</button>
+
+<div class="results" id="results">
+
+<div class="big">
+<small>YOUR DAILY CALORIE TARGET</small>
+<strong id="target">—</strong>
+<small>calories per day</small>
+</div>
+
+</div>
+
+</div>
+
+<div class="card info">
+
+<h2>What is a calorie deficit?</h2>
+
+<p>
+A calorie deficit occurs when you consume fewer calories than your body uses. Over time, this can lead to weight loss.
+</p>
+
+<h2>How does this calculator work?</h2>
+
+<p>
+The calculator subtracts your selected calorie deficit from your estimated maintenance calories. A deficit of about 500 calories per day corresponds to roughly 1 pound of weight loss per week as a general estimate.
+</p>
+
+<h2>Remember</h2>
+
+<p>
+Calorie needs vary from person to person. Use the result as a starting estimate and adjust based on your progress over time.
+</p>
+
+</div>
+
+</main>
+
+<script>
+
+function calculateDeficit(){
+
+const maintenance=parseFloat(document.getElementById("maintenance").value);
+const deficit=parseFloat(document.getElementById("goal").value);
+
+if(!maintenance || maintenance<=0){
+alert("Please enter your maintenance calories.");
+return;
+}
+
+const target=maintenance-deficit;
+
+document.getElementById("target").textContent=Math.max(0,Math.round(target)).toLocaleString();
+
+document.getElementById("results").style.display="block";
+
+}
+
+</script>
+
+</body>
+</html>
